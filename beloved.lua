@@ -1,12 +1,19 @@
+-- beloved v1.0
+-- Copyright (c) 2020 Jeme
+-- MIT License
+-- Repo: https://github.com/TheJeme/beloved
+
 beloved = {}
 
-local isDebugMode
+local belovedKey = 'd' -- Change this to any key you want to use for activating beloved mode.
+
+local isbelovedMode
 local font
 local gw, gh
 local mouse1Down, mouse2Down
 
 function beloved:load()
-  isDebugMode = false
+  isbelovedMode = false
   font = love.graphics.newFont(12)
   gw = love.graphics.getWidth()
   gh = love.graphics.getHeight()
@@ -15,10 +22,9 @@ function beloved:load()
 end
 
 function beloved:draw()
-  if(isDebugMode == true) then
-    
-    love.graphics.setFont(font)
+  if(isbelovedMode) then    
     love.graphics.push()
+    love.graphics.setFont(font)
     love.graphics.setColor(1, 1, 1, 1)
     love.graphics.line(gw * 0.5, 0, gw * 0.5, gh)
     love.graphics.line(0, gh * 0.5, gw, gh * 0.5)
@@ -43,26 +49,32 @@ function beloved:draw()
 end
 
 function beloved:mousepressed(x, y, button)
-  if (button == 1) then
-    mouse1Down = "LEFT"
-  end
-  if (button == 2) then
-    mouse2Down = "RIGHT"
+  if (isbelovedMode) then
+    if (button == 1) then
+      print("Mouse left button pressed at " .. love.mouse.getX() .. ", " .. love.mouse.getY())
+      mouse1Down = "LEFT"
+    end
+    if (button == 2) then
+      print("Mouse right button pressed at " .. love.mouse.getX() .. ", " .. love.mouse.getY())
+      mouse2Down = "RIGHT"
+    end
   end
 end
 
 function beloved:mousereleased(x, y, button)
-  if button == 1 then
-    mouse1Down = ""
-  end
-  if button == 2 then
-    mouse2Down = ""
+  if (isbelovedMode) then
+    if button == 1 then
+      mouse1Down = ""
+    end
+    if button == 2 then
+      mouse2Down = ""
+    end
   end
 end
 
 function beloved:keypressed(key)
-  if key == 'd' then
-    isDebugMode = not isDebugMode
+  if key == belovedKey then
+    isbelovedMode = not isbelovedMode
   end
 end
 
