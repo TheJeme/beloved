@@ -1,12 +1,12 @@
 # beloved
 > beloved is LÖVE library for making and testing UI.
 
+![Example](https://i.imgur.com/7om5qk1.png)
 
 ## Installation
 
 Copy the file beloved.lua in your project folder and call it using require. There is example below this.
 
-![Example](https://i.imgur.com/7om5qk1.png)
 ## Usage example
 
 ```lua
@@ -32,3 +32,7 @@ function love.keypressed(key)
   beloved:keypressed(key) -- Default key is 'd' for activating beloved mode, you can change this in beloved.lua
 end
 ```
+
+## License
+
+[MIT](LICENSE)
